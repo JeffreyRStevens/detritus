@@ -10,7 +10,11 @@
 #' @export
 #'
 #' @examples
-test_element_max <- function(x, num) {
+#' check_element_max(1:5, 5)
+#' \dontrun{
+#' check_element_max(1:5, 4)
+#' }
+check_element_max <- function(x, num) {
   if(length(x) > num) {
     cli::cli_abort(paste0(
       "`{substitute(x)}` must have no more than {num} element{?s}."
@@ -29,7 +33,11 @@ test_element_max <- function(x, num) {
 #' @export
 #'
 #' @examples
-test_element_min <- function(x, num) {
+#' check_element_min(1:5, 5)
+#' \dontrun{
+#' check_element_min(1:5, 6)
+#' }
+check_element_min <- function(x, num) {
   if(length(x) < num) {
     cli::cli_abort(paste0(
       "`{substitute(x)}` must have at least {num} element{?s}."
@@ -48,7 +56,11 @@ test_element_min <- function(x, num) {
 #' @export
 #'
 #' @examples
-test_element_num <- function(x, num) {
+#' check_element_num(1:5, 5)
+#' \dontrun{
+#' check_element_num(1:5, 4)
+#' }
+check_element_num <- function(x, num) {
   if(length(x) != num) {
     cli::cli_abort(
       "`{substitute(x)}` must have {num} element{?s}, not {length(x)} element{?s}."
@@ -66,7 +78,11 @@ test_element_num <- function(x, num) {
 #' @export
 #'
 #' @examples
-test_type <- function(x, type) {
+#' check_type(1, "numeric")
+#' \dontrun{
+#' check_type("1", "numeric")
+#' }
+check_type <- function(x, type) {
   if(!inherits(x, type)) {
     cli::cli_abort(paste0(
       "`{substitute(x)}` must be of type {type};  not {typeof(x)}."

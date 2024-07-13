@@ -15,3 +15,5 @@ Imports:
     dplyr,
     ggplot2,
     tidyr
+URL: https://github.com/JeffreyRStevens/detritus
+BugReports: https://github.com/JeffreyRStevens/detritus/issues

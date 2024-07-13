@@ -15,6 +15,14 @@ Imports:
     correlation,
     dplyr,
     ggplot2,
+    insight,
+    lme4,
+    performance,
+    purrr,
+    stats,
     tidyr
 URL: https://github.com/JeffreyRStevens/detritus
 BugReports: https://github.com/JeffreyRStevens/detritus/issues
+Suggests: 
+    testthat (>= 3.0.0)
+Config/testthat/edition: 3

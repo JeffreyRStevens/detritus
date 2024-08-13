@@ -19,6 +19,7 @@ Imports:
     dplyr,
     ggplot2,
     insight,
+    lme4,
     performance,
     purrr,
     stats,
@@ -26,6 +27,5 @@ Imports:
 URL: https://github.com/JeffreyRStevens/detritus
 BugReports: https://github.com/JeffreyRStevens/detritus/issues
 Suggests:
-    lme4,
     testthat (>= 3.0.0)
 Config/testthat/edition: 3

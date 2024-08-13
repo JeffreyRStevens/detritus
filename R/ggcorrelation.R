@@ -1,6 +1,3 @@
-
-
-
 #' Plot correlations with statistics
 #'
 #' @param df Data frame
@@ -90,11 +87,12 @@ ggcorrelation <- function(df, x, y, xlabel = NULL, ylabel = NULL, cor_type = "pe
 #' @export
 #'
 #' @examples
+#' axis_prop(c(0, 10), prop = 0.5)
 axis_prop <- function(vec, prop = 0.5) {
-  test_type(vec, type = "numeric")
-  test_type(prop, type = "numeric")
-  test_element_min(vec, 2)
-  test_element_num(prop, 1)
+  check_type(vec, type = "numeric")
+  check_type(prop, type = "numeric")
+  check_element_min(vec, 2)
+  check_element_num(prop, 1)
   prop * (max(vec, na.rm = TRUE) - min(vec, na.rm = TRUE)) + min(vec, na.rm = TRUE)
 }
 

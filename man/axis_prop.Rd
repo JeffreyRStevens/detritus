@@ -19,3 +19,6 @@ This function finds the minimum and maximum values in a vector then
 calculates a requested proportion of that. It is used to place text in
 plots.
 }
+\examples{
+axis_prop(c(0, 10), prop = 0.5)
+}

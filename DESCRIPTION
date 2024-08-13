@@ -2,7 +2,10 @@ Package: detritus
 Type: Package
 Title: Collection of Miscellaneous Tools
 Version: 0.0.1
-Author: Jeffrey R. Stevens
+Authors@R: 
+    person("Jeffrey R.", "Stevens", , "jeffrey.r.stevens@protonmail.com", 
+    role = c("aut", "cre", "cph"),
+    comment = c(ORCID = "0000-0003-2375-1360"))
 Maintainer: The package maintainer <jeffrey.r.stevens@protonmail.com>
 Description: Miscellaneous collection of tools developed by me for me.
 License: GPL (>= 3)
@@ -15,6 +18,14 @@ Imports:
     correlation,
     dplyr,
     ggplot2,
+    insight,
+    performance,
+    purrr,
+    stats,
     tidyr
 URL: https://github.com/JeffreyRStevens/detritus
 BugReports: https://github.com/JeffreyRStevens/detritus/issues
+Suggests: 
+    lme4,
+    testthat (>= 3.0.0)
+Config/testthat/edition: 3

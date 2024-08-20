@@ -98,17 +98,20 @@ find_best_model <- function(x, threshold = 3) {
     dplyr::arrange(desc(BF))
   if(sorted_models$BF[1] >= threshold) {
     best_model_name <- sorted_models$Name[1]
+    second_best_model_name <- sorted_models$Name[2]
   } else {
     best_model_name <- x$Name[1]
+    second_best_model_name <- x$Name[2]
   }
-  best_bf <- sorted_models$BF[1]
-  best_2nd_bf <- sorted_models$BF[1] / sorted_models$BF[2]
   best_model <- eval(parse(text = best_model_name), envir = parent.frame(3))
   best_form <- build_formula(best_model, all = TRUE)
   formula <- best_form$formula
   fixed <- best_form$fixed
   random <- best_form$random
-  output <- list(best_model = best_model, best_model_name = best_model_name, formula = formula, fixed = fixed, random = random, bf = best_bf, bf2nd = best_2nd_bf)
+  best_bf <- sorted_models$BF[1]
+  second_best_model <- eval(parse(text = second_best_model_name), envir = parent.frame(3))
+  best_2nd_bf <- sorted_models$BF[1] / sorted_models$BF[2]
+  output <- list(best_model = best_model, best_model_name = best_model_name, formula = formula, fixed = fixed, random = random, bf = best_bf, bf2nd = best_2nd_bf, second_best_model = second_best_model, second_best_model_name = second_best_model_name)
   return(output)
 }
 

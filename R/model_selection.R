@@ -115,3 +115,41 @@ find_best_model <- function(x, threshold = 3) {
   return(output)
 }
 
+#' Find the best random effects model for intercept
+#'
+#' @param x Data frame for data
+#' @param dv Character string for dependent variable
+#' @param rand Character vector of possible random effect variables
+#' @param glm Logical indicating whether to use linear models (default = FALSE)
+#' or generalized linear models (TRUE).
+#'
+#' @return
+#' Returns a character string for the formula of the best fitting random effects
+#' model based on Bayes factors.
+#' @export
+#'
+#' @examples
+find_best_random_effect <- function(x, dv, rand, glm = FALSE) {
+  null_form <- (paste0(dv, " ~ 1"))
+  rands <- paste0("(1 | ", rand , ")")
+  singles <- paste(dv, "~", rands)
+  combined <- (paste(dv, "~", paste0(rands, collapse = " + ")))
+  formulas <- c(singles, combined)
+  model_names <- paste0("mod", seq_along(1:length(formulas)))
+  if(!glm) {
+    mod_null <- lm(as.formula(null_form), data = x)
+    mod_other <- map(formulas, \(vec) lmer(as.formula(vec), data = x)) |>
+      set_names(nm = model_names)
+  } else {
+    mod_null <- glm(as.formula(null_form), family = binomial, data = x)
+    mod_other <- map(formulas, \(vec) lme4::glmer(as.formula(vec), family = binomial, data = x)) |>
+      set_names(nm = model_names)
+  }
+  models <- c(mod_null = list(mod_null), mod_other)
+  # compare_models(map(model_names, \(m) eval(parse(text = m), envir = parent.frame(3))))
+  model_comparison <- compare_models(models)
+  model_comparison$BF[is.na(model_comparison$BF)] <- 1
+  best_model_num <- which(model_comparison$BF == max(model_comparison$BF, na.rm = TRUE))
+  best_model <- models[[best_model_num]]
+  return(build_formula(best_model))
+}

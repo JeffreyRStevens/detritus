@@ -9,8 +9,7 @@ find_best_model(x, threshold = 3)
 \arguments{
 \item{x}{Data frame output from `compare_models()`.}
 
-\item{threshold}{Bayes factor threshold used to determine whether best
-fitting model is better than second best fitting model.}
+\item{threshold}{Bayes factor threshold for distinguishing models.}
 }
 \value{
 Returns list with best fitting model object, model name, model formula, and fixed and random effects.

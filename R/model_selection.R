@@ -80,8 +80,7 @@ compare_models <- function(..., reference = 1) {
 #' Determines best fitting model
 #'
 #' @param x Data frame output from `compare_models()`.
-#' @param threshold Bayes factor threshold used to determine whether best
-#' fitting model is better than second best fitting model.
+#' @param threshold Bayes factor threshold for distinguishing models.
 #'
 #' @return
 #' Returns list with best fitting model object, model name, model formula, and fixed and random effects.
@@ -93,20 +92,23 @@ compare_models <- function(..., reference = 1) {
 #' mod_comp <- compare_models(mod1, mod2)
 #' find_best_model(mod_comp)
 find_best_model <- function(x, threshold = 3) {
+  x$BF[is.na(x$BF)] <- 1
   first_model <- x$Name[1]
   sorted_models <- x |>
-    dplyr::arrange(BIC)
+    dplyr::arrange(desc(BF))
   if(sorted_models$BF[1] >= threshold) {
     best_model_name <- sorted_models$Name[1]
   } else {
     best_model_name <- x$Name[1]
   }
+  best_bf <- sorted_models$BF[1]
+  best_2nd_bf <- sorted_models$BF[1] / sorted_models$BF[2]
   best_model <- eval(parse(text = best_model_name), envir = parent.frame(3))
   best_form <- build_formula(best_model, all = TRUE)
   formula <- best_form$formula
   fixed <- best_form$fixed
   random <- best_form$random
-  output <- list(best_model = best_model, best_model_name = best_model_name, formula = formula, fixed = fixed, random = random)
+  output <- list(best_model = best_model, best_model_name = best_model_name, formula = formula, fixed = fixed, random = random, bf = best_bf, bf2nd = best_2nd_bf)
   return(output)
 }
 

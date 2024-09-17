@@ -81,6 +81,7 @@ compare_models <- function(..., reference = 1) {
 #'
 #' @param x Data frame output from `compare_models()`.
 #' @param threshold Bayes factor threshold for distinguishing models.
+#' @param ... Additional arguments to pass on to internal functions.
 #'
 #' @return
 #' Returns list with best fitting model object, model name, model formula, and fixed and random effects.
@@ -91,7 +92,7 @@ compare_models <- function(..., reference = 1) {
 #' mod2 <- lm(mpg ~ disp + cyl, data = mtcars)
 #' mod_comp <- compare_models(mod1, mod2)
 #' find_best_model(mod_comp)
-find_best_model <- function(x, threshold = 3) {
+find_best_model <- function(x, threshold = 3, ...) {
   x$BF[is.na(x$BF)] <- 1
   first_model <- x$Name[1]
   sorted_models <- x |>
@@ -103,13 +104,13 @@ find_best_model <- function(x, threshold = 3) {
     best_model_name <- x$Name[1]
     second_best_model_name <- x$Name[2]
   }
-  best_model <- noquote(best_model_name)
+  best_model <- eval(parse(text = best_model_name), ...)
   best_form <- build_formula(best_model, all = TRUE)
   formula <- best_form$formula
   fixed <- best_form$fixed
   random <- best_form$random
   best_bf <- sorted_models$BF[1]
-  second_best_model <- noquote(second_best_model_name)
+  second_best_model <- eval(parse(text = second_best_model_name), ...)
   best_2nd_bf <- sorted_models$BF[1] / sorted_models$BF[2]
   output <- list(best_model = best_model, best_model_name = best_model_name, formula = formula, fixed = fixed, random = random, bf = best_bf, bf2nd = best_2nd_bf, second_best_model = second_best_model, second_best_model_name = second_best_model_name)
   return(output)

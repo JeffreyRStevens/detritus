@@ -4,12 +4,14 @@
 \alias{find_best_model}
 \title{Determines best fitting model}
 \usage{
-find_best_model(x, threshold = 3)
+find_best_model(x, threshold = 3, ...)
 }
 \arguments{
 \item{x}{Data frame output from `compare_models()`.}
 
 \item{threshold}{Bayes factor threshold for distinguishing models.}
+
+\item{...}{Additional arguments to pass on to internal functions.}
 }
 \value{
 Returns list with best fitting model object, model name, model formula, and fixed and random effects.

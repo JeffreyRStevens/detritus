@@ -81,7 +81,9 @@ compare_models <- function(..., reference = 1) {
 #'
 #' @param x Data frame output from `compare_models()`.
 #' @param threshold Bayes factor threshold for distinguishing models.
-#' @param ... Additional arguments to pass on to internal functions.
+#' @param ... Additional arguments to pass on to internal functions. In
+#' particular, if running find_best_model() inside a function, include
+#' `envir = environment()` argument.
 #'
 #' @return
 #' Returns list with best fitting model object, model name, model formula, and fixed and random effects.

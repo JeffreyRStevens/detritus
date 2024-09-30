@@ -11,7 +11,9 @@ find_best_model(x, threshold = 3, ...)
 
 \item{threshold}{Bayes factor threshold for distinguishing models.}
 
-\item{...}{Additional arguments to pass on to internal functions.}
+\item{...}{Additional arguments to pass on to internal functions. In
+particular, if running find_best_model() inside a function, include
+`envir = environment()` argument.}
 }
 \value{
 Returns list with best fitting model object, model name, model formula, and fixed and random effects.

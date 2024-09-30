@@ -23,6 +23,7 @@ Imports:
     performance,
     purrr,
     stats,
+    stringr,
     tidyr
 URL: https://github.com/JeffreyRStevens/detritus
 BugReports: https://github.com/JeffreyRStevens/detritus/issues

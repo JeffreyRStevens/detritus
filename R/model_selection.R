@@ -132,6 +132,7 @@ find_best_model <- function(x, threshold = 3, ...) {
 #' @export
 #'
 #' @examples
+#' find_best_random_effect(mtcars, mpg, rand = "cyl")
 find_best_random_effect <- function(x, dv, rand, glm = FALSE) {
   null_form <- (paste0(dv, " ~ 1"))
   rands <- paste0("(1 | ", rand , ")")
@@ -141,12 +142,12 @@ find_best_random_effect <- function(x, dv, rand, glm = FALSE) {
   model_names <- paste0("mod", seq_along(1:length(formulas)))
   if(!glm) {
     mod_null <- lm(as.formula(null_form), data = x)
-    mod_other <- map(formulas, \(vec) lmer(as.formula(vec), data = x)) |>
-      set_names(nm = model_names)
+    mod_other <- purrr::map(formulas, \(vec) lmer(as.formula(vec), data = x)) |>
+      purrr::set_names(nm = model_names)
   } else {
     mod_null <- glm(as.formula(null_form), family = binomial, data = x)
-    mod_other <- map(formulas, \(vec) lme4::glmer(as.formula(vec), family = binomial, data = x)) |>
-      set_names(nm = model_names)
+    mod_other <- purrr::map(formulas, \(vec) lme4::glmer(as.formula(vec), family = binomial, data = x)) |>
+      purrr::set_names(nm = model_names)
   }
   models <- c(mod_null = list(mod_null), mod_other)
   # compare_models(map(model_names, \(m) eval(parse(text = m), envir = parent.frame(3))))

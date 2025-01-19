@@ -24,5 +24,5 @@ model based on Bayes factors.
 Find the best random effects model for intercept
 }
 \examples{
-find_best_random_effect(mtcars, mpg, rand = "cyl")
+find_best_random_effect(mtcars, "mpg", rand = "cyl")
 }

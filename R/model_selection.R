@@ -132,7 +132,7 @@ find_best_model <- function(x, threshold = 3, ...) {
 #' @export
 #'
 #' @examples
-#' find_best_random_effect(mtcars, mpg, rand = "cyl")
+#' find_best_random_effect(mtcars, "mpg", rand = "cyl")
 find_best_random_effect <- function(x, dv, rand, glm = FALSE) {
   null_form <- (paste0(dv, " ~ 1"))
   rands <- paste0("(1 | ", rand , ")")

@@ -13,23 +13,24 @@ Encoding: UTF-8
 LazyData: true
 RoxygenNote: 7.3.2
 Imports:
-    BayesFactor,
     cli,
     cocoon,
     correlation,
     desc,
     dplyr,
+    fs,
     ggplot2,
     insight,
     lme4,
     performance,
     purrr,
     readr,
-    stats,
     stringr,
+    tibble,
     tidyr
 URL: https://github.com/JeffreyRStevens/detritus
 BugReports: https://github.com/JeffreyRStevens/detritus/issues
 Suggests:
+    BayesFactor,
     testthat (>= 3.0.0)
 Config/testthat/edition: 3

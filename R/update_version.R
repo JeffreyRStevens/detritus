@@ -15,7 +15,7 @@
 increment_version <- function(level = NULL,
                               addnews = TRUE) {
   if (is.null(level)) cli::cli_abort("`level` is a required argument.")
-  level <- match.arg(level, c("major", "minor", "patch"))
+  level <- match.arg(level, c("major", "minor", "patch", "dev"))
 
   new_version <- bump_version()[[level]]
 

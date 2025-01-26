@@ -56,11 +56,8 @@ increment_version <- function(level = NULL,
 #'
 #' @export
 #'
-update_citation_version <- function(level = NULL) {
-  if (is.null(level)) cli::cli_abort("`level` is a required argument.")
-  level <- match.arg(level, c("major", "minor", "patch"))
-
-  new_version <- get_current_version
+update_citation_version <- function() {
+  new_version <- get_current_version()
 
   citation_file <- "inst/CITATION"
   if (file.exists(citation_file)) {

@@ -18,3 +18,10 @@ You can install the development version of detritus from
 # install.packages("devtools")
 devtools::install_github("JeffreyRStevens/detritus")
 ```
+
+## Citation
+
+To cite `{detritus}`, use:
+
+Stevens JR (2025). *Collection of Miscellaneous Tools*. R package
+version 0.0.2.9000, <https://github.com/JeffreyRStevens/detritus>.

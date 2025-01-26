@@ -29,3 +29,11 @@ You can install the development version of detritus from [GitHub](https://github
 devtools::install_github("JeffreyRStevens/detritus")
 ```
 
+## Citation
+
+To cite `{detritus}`, use:
+
+```{r echo=FALSE, results='asis'}
+print(readCitationFile("inst/CITATION"), style = "text")
+```
+

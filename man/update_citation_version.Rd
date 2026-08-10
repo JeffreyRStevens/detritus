@@ -4,10 +4,7 @@
 \alias{update_citation_version}
 \title{Update version in CITATION to match DESCRIPTION}
 \usage{
-update_citation_version(level = NULL)
-}
-\arguments{
-\item{level}{Character string "major", "minor", or "patch"}
+update_citation_version()
 }
 \value{
 No output returned, but side effect of updating inst/CITATION file.
